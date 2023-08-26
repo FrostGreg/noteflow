@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 // const theme = createTheme();
 
 export const metadata: Metadata = {
-  title: "NoteFlow",
+  title: "NoteFlow - Capture, Create, Connect",
   description:
     "Elevate your productivity with NoteFlow - the ultimate note-taking app for capturing ideas, organizing thoughts, and syncing seamlessly across devices. Create, organize, and connect your notes effortlessly. Perfect for students, professionals, and creative thinkers.",
   viewport: "initial-scale=1, width=device-width",

@@ -1,24 +1,21 @@
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
-import { Menu } from "@mui/icons-material";
+import Grid from "@mui/joy/Grid";
+import ProfileCard from "./components/ProfileCard";
+import Article from "./components/Article";
+import Header from "./components/Header";
 
 export default function Home() {
   return (
-    <AppBar position="static" color="primary">
-      <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
-        >
-          <Menu />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          NoteFlow
-        </Typography>
-        <Button color="inherit">Login</Button>
-      </Toolbar>
-    </AppBar>
+    <>
+      <Header />
+      <Grid container sx={{ flexGrow: 1 }}>
+        <Grid md>
+          <ProfileCard />
+        </Grid>
+        <Grid md={6}>
+          <Article />
+        </Grid>
+        <Grid md></Grid>
+      </Grid>
+    </>
   );
 }
