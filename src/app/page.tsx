@@ -1,21 +1,17 @@
-import Grid from "@mui/joy/Grid";
-import ProfileCard from "./components/ProfileCard";
-import Article from "./components/Article";
+import Link from "next/link";
 import Header from "./components/Header";
+import { Description } from "@mui/icons-material";
+import { Box } from "@mui/material";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <Grid container sx={{ flexGrow: 1 }}>
-        <Grid md>
-          <ProfileCard />
-        </Grid>
-        <Grid md={6}>
-          <Article />
-        </Grid>
-        <Grid md></Grid>
-      </Grid>
+      <Box sx={{ height: "100vh" }}>
+        <Link href="/pages">
+          <Description />
+        </Link>
+      </Box>
     </>
   );
 }

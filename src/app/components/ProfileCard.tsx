@@ -1,6 +1,7 @@
 import {
   Bookmark,
   BookmarkBorder,
+  Done,
   Favorite,
   FavoriteBorder,
   Star,
@@ -13,6 +14,8 @@ import {
   Box,
   ButtonGroup,
   Button,
+  Badge,
+  Tooltip,
 } from "@mui/material";
 
 import ProfilePic from "../../../public/avatar.png";
@@ -28,12 +31,28 @@ const ProfileCard = () => (
         marginY: "32px",
       }}
     >
-      <Box
+      <Badge
+        badgeContent={
+          <Tooltip title="NoteFlow Owner">
+            <Done />
+          </Tooltip>
+        }
+        color="primary"
+        overlap="circular"
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
         sx={{
           marginY: "32px",
-          maxWidth: "11rem",
-          minWidth: "8rem",
+          width: "clamp(8rem, 100%, 11rem)",
           aspectRatio: "1 / 1",
+          "& .MuiBadge-badge": {
+            width: "25%",
+            height: "25%",
+            borderRadius: "50%",
+            border: "3px solid white",
+          },
         }}
       >
         <Avatar sx={{ width: "100%", height: "100%", overflow: "hidden" }}>
@@ -44,7 +63,7 @@ const ProfileCard = () => (
             style={{ objectFit: "cover" }}
           />
         </Avatar>
-      </Box>
+      </Badge>
       <Box>
         <Typography variant="h5">Greg Frost</Typography>
         <Typography sx={{ marginY: "8px" }}>
