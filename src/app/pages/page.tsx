@@ -1,21 +1,19 @@
-import Grid from "@mui/joy/Grid";
-import ProfileCard from "../components/ProfileCard";
-import Article from "../components/Article";
-import Header from "../components/Header";
+import { List, ListItem } from "@mui/material";
+import { getAllPostIds } from "../../../lib/posts";
+import Link from "next/link";
 
-const MvpPage = () => (
-  <>
-    <Header />
-    <Grid container sx={{ flexGrow: 1 }}>
-      <Grid md>
-        <ProfileCard />
-      </Grid>
-      <Grid md={6}>
-        <Article />
-      </Grid>
-      <Grid md></Grid>
-    </Grid>
-  </>
-);
+const Page = () => {
+  const x = getAllPostIds();
 
-export default MvpPage;
+  return (
+    <List>
+      {x.map((id, index) => (
+        <ListItem key={index}>
+          <Link href={`pages/${id}`}>- {id}</Link>
+        </ListItem>
+      ))}
+    </List>
+  );
+};
+
+export default Page;

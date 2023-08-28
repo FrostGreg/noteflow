@@ -21,7 +21,7 @@ import {
 import ProfilePic from "../../../public/avatar.png";
 import Image from "next/image";
 
-const ProfileCard = () => (
+const ProfileCard = ({ author }: { author: string }) => (
   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
     <Box
       sx={{
@@ -65,7 +65,7 @@ const ProfileCard = () => (
         </Avatar>
       </Badge>
       <Box>
-        <Typography variant="h5">Greg Frost</Typography>
+        <Typography variant="h5">{author}</Typography>
         <Typography sx={{ marginY: "8px" }}>
           Hey, I&apos;m Greg Frost – a storyteller merging imagination with
           reality. With literature roots and an adventure-driven spirit, I dive
