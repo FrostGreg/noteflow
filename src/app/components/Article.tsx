@@ -48,7 +48,7 @@ const Article = ({
       >
         <Image
           src={`https://source.unsplash.com/${data.imagePath}`}
-          alt="random image"
+          alt="Decorative image"
           fill
           style={{
             objectFit: "cover",
@@ -60,7 +60,7 @@ const Article = ({
         {data.chips &&
           data.chips.map((chip, index) => <Chip label={chip} key={index} />)}
       </Box>
-      <Box sx={{ marginTop: "1rem" }}>{children}</Box>
+      <Box sx={{ marginTop: "1rem", fontSize: "18px" }}>{children}</Box>
     </Container>
   );
 };

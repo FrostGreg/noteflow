@@ -12,17 +12,18 @@ export default function Home() {
   const postIDs = getAllPostIds();
 
   return (
-    <Box display="grid" gridTemplateColumns="repeat(3, 1fr)" gap={1}>
+    <Box
+      display="grid"
+      gridTemplateColumns={["1fr", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
+      gap={1}
+    >
       {postIDs.map((id, index) => {
         const { data } = getPostData(id);
         return (
           <Box
             key={index}
-            gridColumn={(index % 3) + 1}
             sx={{
-              display: "flex",
               position: "relative",
-              justifyContent: "center",
               border: "3px solid transparent",
               padding: "0.5rem",
               "&::after": {
@@ -50,8 +51,8 @@ export default function Home() {
               <Box
                 sx={{
                   position: "relative",
-                  width: "25rem",
-                  height: "35rem",
+                  width: "100%",
+                  height: ["35rem"],
                 }}
               >
                 <Image

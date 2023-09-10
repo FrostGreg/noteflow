@@ -27,7 +27,14 @@ export default function RootLayout({
       {/* <ThemeProvider theme={theme}> */}
       <body className={lato.className}>
         <Header />
-        <Box sx={{ margin: "7rem" }}>{children}</Box>
+        <Box
+          sx={{
+            marginY: ["5rem", "6rem", "7rem"],
+            marginX: ["1rem", "1rem", "5rem"],
+          }}
+        >
+          {children}
+        </Box>
         <Footer />
       </body>
       {/* </ThemeProvider> */}
