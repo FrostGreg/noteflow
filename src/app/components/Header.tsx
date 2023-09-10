@@ -1,4 +1,4 @@
-import { ShapeLine } from "@mui/icons-material";
+import { Draw } from "@mui/icons-material";
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { Fira_Code } from "next/font/google";
 import Link from "next/link";
@@ -9,7 +9,7 @@ const Header = () => (
   <AppBar position="fixed" color="default">
     <Toolbar>
       <Link href="../">
-        <ShapeLine sx={{ color: "darkgreen", marginRight: "1.5rem" }} />
+        <Draw sx={{ color: "darkgreen", marginRight: "1.5rem" }} />
       </Link>
       <Box sx={{ borderLeft: "1px solid black", paddingLeft: "1rem" }}>
         <Typography

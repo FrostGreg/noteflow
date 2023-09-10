@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { getAllPostIds, getPostData } from "../../../../lib/posts";
+import { getAllPostIds, getPostData } from "../../../lib/posts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import ProfileCard from "@/app/components/ProfileCard";
 import Article from "@/app/components/Article";

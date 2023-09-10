@@ -23,7 +23,7 @@ const Article = ({
 }) => {
   return (
     <Container>
-      <Link href="/pages" style={{ display: "flex" }}>
+      <Link href="/" style={{ display: "flex" }}>
         <KeyboardBackspace
           sx={{
             marginRight: "1.5rem",
