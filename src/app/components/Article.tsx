@@ -1,50 +1,53 @@
-import { Home } from "@mui/icons-material";
-import {
-  Box,
-  Breadcrumbs,
-  Chip,
-  Container,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { KeyboardBackspace } from "@mui/icons-material";
+import { Box, Chip, Container, Divider, Typography } from "@mui/material";
+import { Inter, Lato } from "next/font/google";
 
 import Link from "next/link";
 import { ReactElement } from "react";
 
+const inter = Inter({ weight: "500", subsets: ["latin"] });
+const lato = Lato({ weight: "700", subsets: ["latin"] });
+
 const Article = ({
   title,
+  date,
+  length,
   chips,
   children,
 }: {
   title: string;
+  date: string;
+  length: string;
   chips?: string[];
   children: ReactElement;
 }) => {
-  const maxTitleLength = 30;
-
   return (
     <Container>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit" href="/">
-          <Home />
-        </Link>
-        <Link color="inherit" href="/pages">
-          Pages
-        </Link>
-        <Typography color="text.primary">
-          {title.length > maxTitleLength
-            ? title.substring(0, maxTitleLength) + "..."
-            : title}
+      <Link href="/pages" style={{ display: "flex" }}>
+        <KeyboardBackspace
+          sx={{
+            marginRight: "1.5rem",
+          }}
+        />
+        Back to Articles
+      </Link>
+      <Box sx={{ marginY: "4rem" }}>
+        <Typography variant="h3" component="h1" className={inter.className}>
+          {title}
         </Typography>
-      </Breadcrumbs>
-      <Typography variant="h3" component="h1" sx={{ marginY: "8px" }}>
-        {title}
-      </Typography>
+        <Typography
+          variant="h6"
+          sx={{ color: "slategrey" }}
+          className={lato.className}
+        >
+          {date} &mdash; {length} read
+        </Typography>
+      </Box>
       <Divider sx={{ marginBottom: "16px" }} />
       <Box sx={{ display: "flex", gap: "1rem" }}>
         {chips && chips.map((chip, index) => <Chip label={chip} key={index} />)}
       </Box>
-      <Box sx={{ marginX: "2rem" }}>{children}</Box>
+      <Box sx={{ marginX: "2rem", marginTop: "1rem" }}>{children}</Box>
     </Container>
   );
 };

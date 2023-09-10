@@ -3,6 +3,9 @@ import { getAllPostIds, getPostData } from "../../../../lib/posts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import ProfileCard from "@/app/components/ProfileCard";
 import Article from "@/app/components/Article";
+import MarkdownImage from "@/app/components/MarkdownImage";
+
+const components = { MarkdownImage };
 
 const Page = ({ params }: { params: { id: string } }) => {
   const validPostIds = getAllPostIds();
@@ -14,13 +17,16 @@ const Page = ({ params }: { params: { id: string } }) => {
   const { data, content } = getPostData(params.id);
 
   return (
-    <Grid container sx={{ flexGrow: 1 }}>
-      <Grid md>
-        <ProfileCard author={data.author} />
-      </Grid>
+    <Grid container sx={{ flexGrow: 1, marginTop: "6rem" }}>
+      <Grid md>{/* <ProfileCard author={data.author} /> */}</Grid>
       <Grid md={6}>
-        <Article title={data.title} chips={data.chips}>
-          <MDXRemote source={content} />
+        <Article
+          title={data.title}
+          date={data.date}
+          length={data.length}
+          chips={data.chips}
+        >
+          <MDXRemote source={content} components={components} />
         </Article>
       </Grid>
       <Grid md></Grid>

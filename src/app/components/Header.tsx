@@ -6,11 +6,7 @@ import Link from "next/link";
 const firaCode = Fira_Code({ subsets: ["latin"] });
 
 const Header = () => (
-  <AppBar
-    position="static"
-    color="default"
-    sx={{ marginBottom: [null, null, "2rem"] }}
-  >
+  <AppBar position="fixed" color="default">
     <Toolbar>
       <Link href="../">
         <ShapeLine sx={{ color: "darkgreen", marginRight: "1.5rem" }} />

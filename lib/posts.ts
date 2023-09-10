@@ -3,7 +3,7 @@ import matter from "gray-matter";
 import path from "path";
 
 export function getPostsDir() {
-  return `${process.cwd()}/src/app/posts`;
+  return `${process.cwd()}/public/posts`;
 }
 
 export function getAllPostIds() {
@@ -13,7 +13,7 @@ export function getAllPostIds() {
 }
 
 export function getPostData(id: string) {
-  const fullPath = path.join(process.cwd(), "/src/app/posts/", `${id}.mdx`);
+  const fullPath = path.join(process.cwd(), "/public/posts/", `${id}.mdx`);
   const fileContents = readFileSync(fullPath, "utf8");
 
   const matterResult = matter(fileContents);

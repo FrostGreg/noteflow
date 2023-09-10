@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Box sx={{ height: "100vh" }}>
+      <Box sx={{ height: "100vh", marginTop: "7rem" }}>
         <Link href="/pages">
           <Description />
         </Link>

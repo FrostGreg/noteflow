@@ -1,10 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Lato } from "next/font/google";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 
-const inter = Inter({ subsets: ["latin"] });
+const lato = Lato({ weight: "400", subsets: ["latin"] });
 // const theme = createTheme();
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <CssBaseline />
       {/* <ThemeProvider theme={theme}> */}
-      <body className={inter.className}>{children}</body>
+      <body className={lato.className}>{children}</body>
       {/* </ThemeProvider> */}
     </html>
   );
