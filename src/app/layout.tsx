@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 

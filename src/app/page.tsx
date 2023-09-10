@@ -1,7 +1,5 @@
 import Link from "next/link";
-import Header from "./components/Header";
 import { Box, Typography } from "@mui/material";
-import Footer from "./components/Footer";
 
 import { Inter, Lato } from "next/font/google";
 import { getAllPostIds, getPostData } from "../../lib/posts";
