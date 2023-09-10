@@ -47,7 +47,7 @@ const Article = ({
       <Box sx={{ display: "flex", gap: "1rem" }}>
         {chips && chips.map((chip, index) => <Chip label={chip} key={index} />)}
       </Box>
-      <Box sx={{ marginX: "2rem", marginTop: "1rem" }}>{children}</Box>
+      <Box sx={{ marginTop: "1rem" }}>{children}</Box>
     </Container>
   );
 };
