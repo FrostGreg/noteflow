@@ -3,7 +3,7 @@ import { Box, Chip, Container, Typography } from "@mui/material";
 import { Inter, Lato } from "next/font/google";
 import Image from "next/image";
 
-import { PostData } from "../../../lib/posts";
+import { PostData } from "../../../utils/posts";
 
 import Link from "next/link";
 

@@ -22,7 +22,7 @@ export type PostData = {
 };
 
 export function getPostData(id: string) {
-  const fullPath = path.join(process.cwd(), "/public/posts/", `${id}.mdx`);
+  const fullPath = path.join(getPostsDir(), `${id}.mdx`);
   const fileContents = readFileSync(fullPath, "utf8");
 
   const matterResult = matter(fileContents);
