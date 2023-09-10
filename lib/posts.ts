@@ -12,6 +12,15 @@ export function getAllPostIds() {
   return fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
 }
 
+export type PostData = {
+  title: string;
+  author: string;
+  date: string;
+  length: string;
+  imagePath: string;
+  chips: string[];
+};
+
 export function getPostData(id: string) {
   const fullPath = path.join(process.cwd(), "/public/posts/", `${id}.mdx`);
   const fileContents = readFileSync(fullPath, "utf8");
@@ -21,5 +30,6 @@ export function getPostData(id: string) {
   return {
     id,
     ...matterResult,
+    data: matterResult.data as PostData,
   };
 }

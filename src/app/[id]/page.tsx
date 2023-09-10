@@ -20,12 +20,7 @@ const Page = ({ params }: { params: { id: string } }) => {
     <Grid container sx={{ flexGrow: 1, marginTop: "6rem" }}>
       <Grid md>{/* <ProfileCard author={data.author} /> */}</Grid>
       <Grid md={8}>
-        <Article
-          title={data.title}
-          date={data.date}
-          length={data.length}
-          chips={data.chips}
-        >
+        <Article data={data}>
           <MDXRemote source={content} components={components} />
         </Article>
       </Grid>

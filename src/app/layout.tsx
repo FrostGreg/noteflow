@@ -4,6 +4,7 @@ import { Lato } from "next/font/google";
 import CssBaseline from "@mui/material/CssBaseline";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { Box } from "@mui/material";
 
 const lato = Lato({ weight: "400", subsets: ["latin"] });
 // const theme = createTheme();
@@ -26,7 +27,7 @@ export default function RootLayout({
       {/* <ThemeProvider theme={theme}> */}
       <body className={lato.className}>
         <Header />
-        {children}
+        <Box sx={{ margin: "7rem" }}>{children}</Box>
         <Footer />
       </body>
       {/* </ThemeProvider> */}
