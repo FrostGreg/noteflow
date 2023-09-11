@@ -71,8 +71,8 @@ export default function Home() {
                 </Typography>
                 <Typography
                   variant="h4"
-                  color="black"
                   className={inter.className}
+                  sx={{ color: "rgb(var(--foreground-rgb))" }}
                 >
                   {data.title}
                 </Typography>

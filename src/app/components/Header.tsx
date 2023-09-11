@@ -6,17 +6,26 @@ import Link from "next/link";
 const firaCode = Fira_Code({ subsets: ["latin"] });
 
 const Header = () => (
-  <AppBar position="fixed" color="default">
+  <AppBar
+    position="absolute"
+    sx={{ backgroundColor: "rgb(var(--background-start-rgb))" }}
+  >
     <Toolbar>
       <Link href="../">
-        <Draw sx={{ color: "darkgreen", marginRight: "1.5rem" }} />
+        <Draw sx={{ color: "rgb(var(--link-rgb))", marginRight: "1.5rem" }} />
       </Link>
-      <Box sx={{ borderLeft: "1px solid black", paddingLeft: "1rem" }}>
+      <Box
+        sx={{
+          borderLeft: "1px solid rgb(var(--foreground-rgb))",
+          paddingLeft: "1rem",
+          color: "rgb(var(--foreground-rgb))",
+        }}
+      >
         <Typography
           variant="h6"
           component="div"
-          sx={{ flexGrow: 1 }}
           className={firaCode.className}
+          sx={{ flexGrow: 1 }}
         >
           NoteFlow
         </Typography>

@@ -33,7 +33,7 @@ const Article = ({
         </Typography>
         <Typography
           variant="h6"
-          sx={{ color: "slategrey" }}
+          sx={{ color: "rgb(var(--article-date-rgb))" }}
           className={lato.className}
         >
           {data.date} &mdash; {data.length} read
@@ -58,7 +58,15 @@ const Article = ({
       </Box>
       <Box sx={{ display: "flex", gap: "1rem", marginY: "3rem" }}>
         {data.chips &&
-          data.chips.map((chip, index) => <Chip label={chip} key={index} />)}
+          data.chips.map((chip, index) => (
+            <Chip
+              label={chip}
+              key={index}
+              sx={{
+                color: "rgb(var(--foreground-color))",
+              }}
+            />
+          ))}
       </Box>
       <Box sx={{ marginTop: "1rem", fontSize: "18px" }}>{children}</Box>
     </Container>
