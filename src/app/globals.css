@@ -11,6 +11,12 @@
 
   --link-rgb: 133, 133, 133;
   --article-date-rgb: 117, 135, 149;
+
+  --audio-background-rgb: 25, 25, 27;
+  --audio-foreground-rgb: 242, 242, 247;
+  --audio-border-rgb: 72, 72, 74;
+  --audio-played-rgb: 36, 138, 61;
+  --audio-error-rgb: 255, 214, 10;
 }
 
 @media (prefers-color-scheme: light) {
@@ -21,6 +27,12 @@
 
     --link-rgb: 105, 105, 105;
     --article-date-rgb: 93, 108, 121;
+
+    --audio-background-rgb: 229, 229, 234;
+    --audio-foreground-rgb: 25, 25, 27;
+    --audio-border-rgb: 199, 199, 204;
+    --audio-played-rgb: 36, 138, 61;
+    --audio-error-rgb: 160, 90, 0;
   }
 }
 

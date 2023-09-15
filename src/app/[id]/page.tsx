@@ -21,7 +21,7 @@ const Page = ({ params }: { params: { id: string } }) => {
     <Grid container sx={{ flexGrow: 1, marginTop: "6rem" }}>
       <Grid item md></Grid>
       <Grid item sm={12} md={8}>
-        <Article data={data}>
+        <Article data={data} content={content}>
           <Suspense fallback={<>Still loading...</>}>
             <MDXRemote source={content} components={components} />
           </Suspense>

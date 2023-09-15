@@ -6,15 +6,18 @@ import Image from "next/image";
 import { PostData } from "../../../utils/posts";
 
 import Link from "next/link";
+import AudioPlayback from "./AudioPlayback";
 
 const inter = Inter({ weight: "500", subsets: ["latin"] });
 const lato = Lato({ weight: "700", subsets: ["latin"] });
 
 const Article = ({
   data,
+  content,
   children,
 }: {
   data: PostData;
+  content: string;
   children: React.ReactNode;
 }) => {
   return (
@@ -56,7 +59,15 @@ const Article = ({
           }}
         />
       </Box>
-      <Box sx={{ display: "flex", gap: "1rem", marginY: "3rem" }}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "1rem",
+          marginY: "3rem",
+          alignItems: "center",
+        }}
+      >
+        <AudioPlayback content={content} />
         {data.chips &&
           data.chips.map((chip, index) => (
             <Chip
@@ -68,7 +79,7 @@ const Article = ({
             />
           ))}
       </Box>
-      <Box sx={{ marginTop: "1rem", fontSize: "18px" }}>{children}</Box>
+      <Box sx={{ marginTop: "6rem", fontSize: "18px" }}>{children}</Box>
     </Container>
   );
 };
