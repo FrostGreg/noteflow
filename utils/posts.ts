@@ -30,6 +30,10 @@ export function getPostData(id: string) {
   return {
     id,
     ...matterResult,
-    data: matterResult.data as PostData,
+    data: {
+      ...matterResult.data,
+      // remove duplicates from chips
+      chips: Array.from(new Set(matterResult.data.chips)),
+    } as PostData,
   };
 }

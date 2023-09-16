@@ -29,7 +29,7 @@ const Footer = () => {
             Capture-Create-Connect
           </Typography>
         </Box>
-        <Typography sx={{}}>
+        <Typography>
           All rights reserved © Greg Frost {new Date().getFullYear()}
         </Typography>
       </Grid>

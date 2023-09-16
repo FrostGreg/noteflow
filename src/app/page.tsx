@@ -76,6 +76,7 @@ export default function Home() {
                 >
                   {data.title}
                 </Typography>
+                <Typography>{data.chips.join(", ")}</Typography>
               </Box>
             </Link>
           </Box>

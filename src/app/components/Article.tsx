@@ -65,19 +65,19 @@ const Article = ({
           gap: "1rem",
           marginY: "3rem",
           alignItems: "center",
+          flexWrap: "wrap",
         }}
       >
         <AudioPlayback content={content} />
-        {data.chips &&
-          data.chips.map((chip, index) => (
-            <Chip
-              label={chip}
-              key={index}
-              sx={{
-                color: "rgb(var(--foreground-color))",
-              }}
-            />
-          ))}
+        {data.chips.map((chip, index) => (
+          <Chip
+            label={chip}
+            key={index}
+            sx={{
+              color: "rgb(var(--foreground-color))",
+            }}
+          />
+        ))}
       </Box>
       <Box sx={{ marginTop: "6rem", fontSize: "18px" }}>{children}</Box>
     </Container>
