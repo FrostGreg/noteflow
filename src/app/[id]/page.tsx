@@ -4,7 +4,6 @@ import ProfileCard from "@/app/components/ProfileCard";
 import Article from "@/app/components/Article";
 import MarkdownImage from "@/app/components/MarkdownImage";
 import { Suspense } from "react";
-import Loading from "./loading";
 import { notFound } from "next/navigation";
 
 const components = { MarkdownImage };
@@ -20,7 +19,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   return (
     <Article data={data} content={content}>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<>Loading..</>}>
         <MDXRemote source={content} components={components} />
       </Suspense>
     </Article>
