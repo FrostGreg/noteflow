@@ -13,7 +13,10 @@ export default function Home() {
     >
       {postIDs.map((id, index) => {
         const { data } = getPostData(id);
-        return <ArticleCard id={id} data={data} key={index} />;
+        return (
+          // Mark first image priority for LCP optimisation
+          <ArticleCard id={id} data={data} priority={index === 0} key={index} />
+        );
       })}
     </Box>
   );
