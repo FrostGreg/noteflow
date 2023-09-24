@@ -1,7 +1,9 @@
 "use client";
 
 import { Pause, PlayArrow, Refresh, RestartAlt } from "@mui/icons-material";
-import { Box, IconButton, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 import { useRef, useState } from "react";
 
 const formatMilliseconds = (time: number) =>

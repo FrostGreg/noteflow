@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import { getAllPostIds, getPostData } from "../utils/posts";
 import ArticleCard from "./components/ArticleCard";
 

@@ -1,7 +1,10 @@
-import { Box, Container, Skeleton } from "@mui/material";
+import dynamic from "next/dynamic";
+
+const Box = dynamic(() => import("@mui/material/Box"));
+const Skeleton = dynamic(() => import("@mui/material/Skeleton"));
 
 const Loading = () => (
-  <Container>
+  <Box>
     <Box sx={{ marginY: "4rem" }}>
       <Skeleton
         variant="text"
@@ -13,6 +16,7 @@ const Loading = () => (
         variant="text"
         sx={{
           fontSize: "20px",
+          width: "30%",
         }}
       />
     </Box>
@@ -27,7 +31,10 @@ const Loading = () => (
       }}
     />
     <Skeleton variant="text" sx={{ marginTop: "6rem", fontSize: "18px" }} />
-  </Container>
+    <Skeleton variant="text" sx={{ fontSize: "18px" }} />
+    <Skeleton variant="text" sx={{ fontSize: "18px" }} />
+    <Skeleton variant="text" sx={{ fontSize: "18px" }} />
+  </Box>
 );
 
 export default Loading;

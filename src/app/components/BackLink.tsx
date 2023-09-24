@@ -1,4 +1,4 @@
-import { KeyboardBackspace } from "@mui/icons-material";
+import KeyboardBackspace from "@mui/icons-material/KeyboardBackspace";
 import { Link, Typography } from "@mui/material";
 import NextLink from "next/link";
 

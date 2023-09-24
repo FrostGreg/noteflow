@@ -1,10 +1,12 @@
-import { Box, Typography } from "@mui/material";
-import BlogImage from "../components/BlogImage";
+import dynamic from "next/dynamic";
+const Box = dynamic(() => import("@mui/material/Box"));
+const Typography = dynamic(() => import("@mui/material/Typography"));
+const BlogImage = dynamic(() => import("../components/BlogImage"));
 
 const NotFound = () => (
   <>
     <Box sx={{ marginY: "4rem" }}>
-      <Typography component="h1" variant="h3">
+      <Typography variant="h3">
         Sorry we couldn&apos;t find the page you are looking for...
       </Typography>
       <Typography variant="h6" color="text.secondary">

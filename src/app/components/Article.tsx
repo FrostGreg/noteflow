@@ -1,9 +1,12 @@
-import { Box, Chip, Container, Typography } from "@mui/material";
+import dynamic from "next/dynamic";
 
 import { PostData } from "../../utils/posts";
 
-import AudioPlayback from "./AudioPlayback";
 import BlogImage from "./BlogImage";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { ReactNode } from "react";
+const AudioPlayback = dynamic(() => import("./AudioPlayback"));
 
 const Article = ({
   data,
@@ -12,10 +15,10 @@ const Article = ({
 }: {
   data: PostData;
   content: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) => {
   return (
-    <Container>
+    <Box>
       <Box sx={{ marginY: "4rem" }}>
         <Typography component="h1" variant="h3">
           {data.title}
@@ -36,11 +39,20 @@ const Article = ({
       >
         <AudioPlayback content={content} />
         {data.chips.map((chip, index) => (
-          <Chip label={chip} key={index} />
+          <Box
+            key={index}
+            sx={{
+              backgroundColor: "primary.dark",
+              borderRadius: "1rem",
+              paddingX: "0.5rem",
+            }}
+          >
+            {chip}
+          </Box>
         ))}
       </Box>
       <Box sx={{ marginTop: "6rem", fontSize: "18px" }}>{children}</Box>
-    </Container>
+    </Box>
   );
 };
 
