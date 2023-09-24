@@ -1,35 +1,24 @@
 import { Draw } from "@mui/icons-material";
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
-import { Fira_Code } from "next/font/google";
 import Link from "next/link";
 
-const firaCode = Fira_Code({ subsets: ["latin"] });
-
 const Header = () => (
-  <AppBar
-    position="absolute"
-    sx={{ backgroundColor: "rgb(var(--background-start-rgb))" }}
-  >
+  <AppBar position="absolute" color="transparent">
     <Toolbar>
       <Link href="../">
-        <Draw sx={{ color: "rgb(var(--link-rgb))", marginRight: "1.5rem" }} />
+        <Draw color="primary" sx={{ marginRight: "1.5rem" }} />
       </Link>
       <Box
         sx={{
-          borderLeft: "1px solid rgb(var(--foreground-rgb))",
+          borderLeft: "1px solid",
+          borderColor: "text.primary",
           paddingLeft: "1rem",
-          color: "rgb(var(--foreground-rgb))",
         }}
       >
-        <Typography
-          variant="h6"
-          component="div"
-          className={firaCode.className}
-          sx={{ flexGrow: 1 }}
-        >
+        <Typography variant="h5" fontSize={20} sx={{ flexGrow: 1 }}>
           NoteFlow
         </Typography>
-        <Typography className={firaCode.className}>
+        <Typography variant="h5" fontSize={16}>
           Capture-Create-Connect
         </Typography>
       </Box>

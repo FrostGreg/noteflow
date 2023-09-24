@@ -96,8 +96,6 @@ const AudioPlayback = ({ content }: { content: string }) => {
     return (
       <Box
         sx={{
-          backgroundColor: "rgb(var(--audio-background-rgb))",
-          color: "rgb(var(--audio-error-rgb))",
           display: "flex",
           alignItems: "center",
         }}
@@ -106,13 +104,11 @@ const AudioPlayback = ({ content }: { content: string }) => {
           onClick={() => {
             setSpeechError(undefined);
           }}
-          sx={{
-            color: "rgb(var(--audio-error-rgb))",
-          }}
+          color="error"
         >
           <Refresh />
         </IconButton>
-        <Typography>{`An error has occurred with the speech synthesis: ${speechError}`}</Typography>
+        <Typography color="error">{`An error has occurred with the speech synthesis: ${speechError}`}</Typography>
       </Box>
     );
   }
@@ -121,36 +117,27 @@ const AudioPlayback = ({ content }: { content: string }) => {
     <>
       <Box
         sx={{
-          backgroundColor: "rgb(var(--audio-background-rgb))",
-          border: "1px solid rgb(var(--audio-border-rgb))",
+          backgroundColor: "background.default",
+          border: "1px solid",
+          borderColor: "primary.dark",
           borderRadius: "1rem",
-          color: "rgb(var(--audio-foreground-rgb))",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           width: "fit-content",
         }}
       >
-        <IconButton
-          onClick={onClick}
-          sx={{
-            color: "rgb(var(--audio-foreground-rgb))",
-          }}
-        >
+        <IconButton onClick={onClick}>
           {isPlaying ? <Pause /> : <PlayArrow />}
         </IconButton>
-        <IconButton
-          onClick={onStop}
-          sx={{
-            color: "rgb(var(--audio-foreground-rgb))",
-          }}
-        >
+        <IconButton onClick={onStop}>
           <RestartAlt />
         </IconButton>
         <Typography
           sx={{
             paddingX: "1rem",
-            borderLeft: "1px solid rgb(var(--audio-foreground-rgb))",
+            borderLeft: "1px solid",
+            borderColor: "text.primary",
           }}
         >
           {formatMilliseconds(elapsedTime - totalPausedTime)}

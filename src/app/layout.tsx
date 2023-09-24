@@ -1,13 +1,8 @@
-import "./globals.css";
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
-import CssBaseline from "@mui/material/CssBaseline";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Box } from "@mui/material";
-
-const lato = Lato({ weight: "400", subsets: ["latin"] });
-// const theme = createTheme();
+import ThemeRegistry from "./components/ThemeRegistry/ThemeRegistry";
 
 export const metadata: Metadata = {
   title: "NoteFlow - Capture, Create, Connect",
@@ -23,21 +18,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <CssBaseline />
-      {/* <ThemeProvider theme={theme}> */}
-      <body className={lato.className}>
-        <Header />
-        <Box
-          sx={{
-            marginY: ["5rem", "6rem", "7rem"],
-            marginX: ["1rem", "1rem", "5rem"],
-          }}
-        >
-          {children}
-        </Box>
-        <Footer />
+      <body>
+        <ThemeRegistry>
+          <Header />
+          <Box
+            sx={{
+              marginY: ["5rem", "6rem", "7rem"],
+              marginX: ["1rem", "1rem", "5rem"],
+            }}
+          >
+            {children}
+          </Box>
+          <Footer />
+        </ThemeRegistry>
       </body>
-      {/* </ThemeProvider> */}
     </html>
   );
 }

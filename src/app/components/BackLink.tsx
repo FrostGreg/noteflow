@@ -1,14 +1,20 @@
 import { KeyboardBackspace } from "@mui/icons-material";
-import Link from "next/link";
+import { Link, Typography } from "@mui/material";
+import NextLink from "next/link";
 
 const BackLink = () => (
-  <Link href="/" style={{ display: "flex", width: "fit-content" }}>
+  <Link
+    href="/"
+    component={NextLink}
+    sx={{ display: "flex", width: "fit-content" }}
+  >
     <KeyboardBackspace
+      color="primary"
       sx={{
         marginRight: "1.5rem",
       }}
     />
-    Back to Articles
+    <Typography>Back to Articles</Typography>
   </Link>
 );
 

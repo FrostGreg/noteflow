@@ -1,10 +1,6 @@
 import { Box, Link, Typography } from "@mui/material";
-
-import { Inter, Lato } from "next/font/google";
+import NextLink from "next/link";
 import Image from "next/image";
-
-const inter = Inter({ weight: "500", subsets: ["latin"] });
-const lato = Lato({ weight: "700", subsets: ["latin"] });
 
 const ArticleCard = ({ id, data }: { id: string; data: any }) => {
   return (
@@ -21,7 +17,8 @@ const ArticleCard = ({ id, data }: { id: string; data: any }) => {
           right: "0px",
           bottom: "0px",
           left: "0px",
-          border: "3px solid darkgreen",
+          border: "3px solid",
+          borderColor: "secondary.main",
           borderRadius: "12px",
           transform: "scale(95%)",
           transition: "all 0.2s ease",
@@ -34,12 +31,12 @@ const ArticleCard = ({ id, data }: { id: string; data: any }) => {
         },
       }}
     >
-      <Link href={`${id}`} className="no-decoration">
+      <Link href={`${id}`} component={NextLink} underline="none">
         <Box
           sx={{
             position: "relative",
             width: "100%",
-            height: ["35rem"],
+            height: "35rem",
           }}
         >
           <Image
@@ -53,21 +50,13 @@ const ArticleCard = ({ id, data }: { id: string; data: any }) => {
           />
         </Box>
         <Box sx={{ marginTop: "1rem" }}>
-          <Typography
-            variant="h6"
-            className={lato.className}
-            sx={{ color: "rgb(var(--article-date-rgb))" }}
-          >
+          <Typography variant="h6" color="text.secondary">
             {data.date} &mdash; {data.length} read
           </Typography>
-          <Typography
-            variant="h4"
-            className={inter.className}
-            sx={{ color: "rgb(var(--foreground-rgb))" }}
-          >
+          <Typography variant="h4" color="text.primary">
             {data.title}
           </Typography>
-          <Typography sx={{ color: "rgb(var(--article-date-rgb))" }}>
+          <Typography color="text.secondary">
             {data.chips.join(", ")}
           </Typography>
         </Box>

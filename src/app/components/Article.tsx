@@ -1,13 +1,9 @@
 import { Box, Chip, Container, Typography } from "@mui/material";
-import { Inter, Lato } from "next/font/google";
 
 import { PostData } from "../../utils/posts";
 
 import AudioPlayback from "./AudioPlayback";
 import BlogImage from "./BlogImage";
-
-const inter = Inter({ weight: "500", subsets: ["latin"] });
-const lato = Lato({ weight: "700", subsets: ["latin"] });
 
 const Article = ({
   data,
@@ -21,14 +17,10 @@ const Article = ({
   return (
     <Container>
       <Box sx={{ marginY: "4rem" }}>
-        <Typography variant="h3" component="h1" className={inter.className}>
+        <Typography component="h1" variant="h3">
           {data.title}
         </Typography>
-        <Typography
-          variant="h6"
-          sx={{ color: "rgb(var(--article-date-rgb))" }}
-          className={lato.className}
-        >
+        <Typography variant="h6" color="text.secondary">
           {data.date} &mdash; {data.length} read
         </Typography>
       </Box>
@@ -44,13 +36,7 @@ const Article = ({
       >
         <AudioPlayback content={content} />
         {data.chips.map((chip, index) => (
-          <Chip
-            label={chip}
-            key={index}
-            sx={{
-              color: "rgb(var(--foreground-color))",
-            }}
-          />
+          <Chip label={chip} key={index} />
         ))}
       </Box>
       <Box sx={{ marginTop: "6rem", fontSize: "18px" }}>{children}</Box>
