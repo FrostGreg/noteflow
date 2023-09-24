@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Box, Typography } from "@mui/material";
 
 import { Inter, Lato } from "next/font/google";
-import { getAllPostIds, getPostData } from "../../utils/posts";
+import { getAllPostIds, getPostData } from "../utils/posts";
 import Image from "next/image";
 
 const inter = Inter({ weight: "500", subsets: ["latin"] });

@@ -6,10 +6,18 @@ export function getPostsDir() {
   return `${process.cwd()}/public/posts`;
 }
 
-export function getAllPostIds() {
-  const fileNames = readdirSync(getPostsDir());
+/*
+  Posts will be added through git PR's and redeploying the server therefore
+  no requirement for live updating so this caching is fine.
+*/
+let allPostIDs: string[] | undefined = undefined;
 
-  return fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
+export function getAllPostIds() {
+  if (allPostIDs === undefined) {
+    const fileNames = readdirSync(getPostsDir());
+    allPostIDs = fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
+  }
+  return allPostIDs;
 }
 
 export type PostData = {
@@ -21,13 +29,19 @@ export type PostData = {
   chips: string[];
 };
 
+const postDataCache = new Map();
+
 export function getPostData(id: string) {
+  if (postDataCache.has(id)) {
+    return postDataCache.get(id);
+  }
+
   const fullPath = path.join(getPostsDir(), `${id}.mdx`);
   const fileContents = readFileSync(fullPath, "utf8");
 
   const matterResult = matter(fileContents);
 
-  return {
+  const response = {
     id,
     ...matterResult,
     data: {
@@ -36,4 +50,8 @@ export function getPostData(id: string) {
       chips: Array.from(new Set(matterResult.data.chips)),
     } as PostData,
   };
+
+  postDataCache.set(id, response);
+
+  return response;
 }
