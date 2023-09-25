@@ -4,7 +4,6 @@ import ArticleCard from "./components/ArticleCard";
 import Typography from "@mui/material/Typography";
 import { Search } from "@mui/icons-material";
 import BlogImage from "./components/BlogImage";
-import Image from "next/image";
 
 export default function Home() {
   const postIDs = getAllPostIds();
