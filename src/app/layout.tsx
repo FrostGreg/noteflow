@@ -23,7 +23,6 @@ export default function RootLayout({
           <Header />
           <Box
             sx={{
-              marginY: ["5rem", "6rem", "7rem"],
               marginX: ["1rem", "1rem", "5rem"],
             }}
           >
