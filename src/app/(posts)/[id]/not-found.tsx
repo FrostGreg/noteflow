@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 const Box = dynamic(() => import("@mui/material/Box"));
 const Typography = dynamic(() => import("@mui/material/Typography"));
-const BlogImage = dynamic(() => import("../components/BlogImage"));
+const BlogImage = dynamic(() => import("../../components/BlogImage"));
 
 const NotFound = () => (
   <>
