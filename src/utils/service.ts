@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from "fs";
 import matter from "gray-matter";
 import path from "path";
 import postTopicsMap from "./postTopicsMap.json" assert { type: "json" };
+import { PostData } from "./types";
 
 export function getPostsDir() {
   return `${process.cwd()}/public/posts`;
@@ -13,7 +14,7 @@ export function getPostsDir() {
 */
 let allPostIDs: string[] | undefined = undefined;
 
-export function getAllPostIds(tag?: string) {
+export function readPostIds(tag?: string) {
   if (tag !== undefined) {
     return postTopicsMap[tag as keyof typeof postTopicsMap] || [];
   }
@@ -25,18 +26,9 @@ export function getAllPostIds(tag?: string) {
   return allPostIDs;
 }
 
-export type PostData = {
-  title: string;
-  author: string;
-  date: string;
-  length: string;
-  imagePath: string;
-  chips: string[];
-};
-
 const postDataCache = new Map();
 
-export function getPostData(id: string) {
+export function readPostData(id: string) {
   if (postDataCache.has(id)) {
     return postDataCache.get(id);
   }

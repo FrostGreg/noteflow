@@ -1,11 +1,10 @@
 import dynamic from "next/dynamic";
 
-import { PostData } from "../../utils/posts";
-
 import BlogImage from "./BlogImage";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";
+import { PostData } from "@/utils/types";
 const AudioPlayback = dynamic(() => import("./AudioPlayback"));
 
 const Article = ({
