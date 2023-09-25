@@ -3,18 +3,41 @@ import { getPostData, getPostIDs } from "@/utils/orch";
 import ArticleCard from "./ArticleCard";
 import SearchBar from "./SearchBar";
 import Box from "@mui/material/Box";
-import { Suspense, use, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { PostData } from "@/utils/types";
 
 const ArticleGrid = () => {
   const [search, setSearch] = useState<string | undefined>();
-  const postIDs = use(getPostIDs()) as string[];
+  const [postIDs, setPostIDs] = useState<string[]>([]);
+  const [postData, setPostData] = useState<PostData[]>([]);
+  const gridRef = useRef<null | HTMLDivElement>(null);
+
+  useEffect(() => {
+    setPostIDs([]);
+    setPostData([]);
+
+    const fetchData = async () => {
+      const res = await getPostIDs(search);
+      setPostIDs(res);
+
+      res.map(async (id: string) => {
+        const { data } = await getPostData(id);
+        setPostData((prev) => {
+          const newArr = Array.from(prev);
+          newArr.push(data);
+          return newArr;
+        });
+      });
+    };
+
+    fetchData();
+  }, [search]);
 
   return (
     <>
       <SearchBar
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
+        setSearch={setSearch}
+        scrollRef={gridRef}
         boxProps={{
           marginTop: ["5rem", "5rem", "-5rem"],
           marginBottom: "15rem",
@@ -25,16 +48,12 @@ const ArticleGrid = () => {
         display="grid"
         gridTemplateColumns={["1fr", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
         gap={1}
+        ref={gridRef}
       >
         <Suspense fallback={<>Loading...</>}>
-          {postIDs.length === 0 ? (
-            <>Sorry I couldnt find any notes on that :(</>
-          ) : (
-            postIDs.map((id, index) => {
-              const { data } = use(getPostData(id));
-              return <ArticleCard id={id} data={data} key={index} />;
-            })
-          )}
+          {postData.map((data, index) => {
+            return <ArticleCard id={postIDs[index]} data={data} key={index} />;
+          })}
         </Suspense>
       </Box>
     </>

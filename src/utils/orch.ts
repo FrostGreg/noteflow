@@ -1,5 +1,6 @@
-export async function getPostIDs() {
-  const res = await fetch("http://localhost:3000/api/post-ids");
+export async function getPostIDs(tag?: string) {
+  const params = tag ? `?tag=${tag}` : "";
+  const res = await fetch(`http://localhost:3000/api/post-ids${params}`);
   return res.json();
 }
 
