@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync } from "fs";
 import matter from "gray-matter";
 import path from "path";
+import postTopicsMap from "./postTopicsMap.json" assert { type: "json" };
 
 export function getPostsDir() {
   return `${process.cwd()}/public/posts`;
@@ -12,7 +13,11 @@ export function getPostsDir() {
 */
 let allPostIDs: string[] | undefined = undefined;
 
-export function getAllPostIds() {
+export function getAllPostIds(tag?: string) {
+  if (tag !== undefined) {
+    return postTopicsMap[tag as keyof typeof postTopicsMap] || [];
+  }
+
   if (allPostIDs === undefined) {
     const fileNames = readdirSync(getPostsDir());
     allPostIDs = fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
@@ -37,7 +42,14 @@ export function getPostData(id: string) {
   }
 
   const fullPath = path.join(getPostsDir(), `${id}.mdx`);
-  const fileContents = readFileSync(fullPath, "utf8");
+
+  let fileContents;
+
+  try {
+    fileContents = readFileSync(fullPath, "utf8");
+  } catch (e) {
+    return {};
+  }
 
   const matterResult = matter(fileContents);
 
