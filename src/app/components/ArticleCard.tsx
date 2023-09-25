@@ -5,15 +5,7 @@ import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
-const ArticleCard = ({
-  id,
-  data,
-  priority,
-}: {
-  id: string;
-  data: any;
-  priority: boolean;
-}) => {
+const ArticleCard = ({ id, data }: { id: string; data: any }) => {
   return (
     <Box
       sx={{
@@ -54,7 +46,6 @@ const ArticleCard = ({
             src={`https://source.unsplash.com/${data.imagePath}`}
             alt="random image"
             fill
-            priority={priority}
             sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0qwcAAREAx9X+/mIAAAAASUVORK5CYII="

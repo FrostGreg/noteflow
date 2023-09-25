@@ -1,7 +1,17 @@
 import Box from "@mui/material/Box";
+import { SxProps } from "@mui/material/styles";
 import Image from "next/image";
+import { ImageProps } from "next/image";
 
-const BlogImage = ({ unsplashPath, ...boxProps }: { unsplashPath: string }) => (
+const BlogImage = ({
+  unsplashPath,
+  boxProps,
+  imageProps,
+}: {
+  unsplashPath: string;
+  boxProps?: SxProps;
+  imageProps?: Omit<ImageProps, "src" | "alt">;
+}) => (
   <Box
     sx={{
       position: "relative",
@@ -22,6 +32,7 @@ const BlogImage = ({ unsplashPath, ...boxProps }: { unsplashPath: string }) => (
         objectFit: "cover",
         borderRadius: "calc(12px - 3px)",
       }}
+      {...imageProps}
     />
   </Box>
 );
