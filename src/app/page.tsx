@@ -1,24 +1,46 @@
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
-import { Menu } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import NoteImage from "./components/NoteImage";
+import NoteCardGrid from "./components/NoteGrid/NoteCardGrid";
 
 export default function Home() {
   return (
-    <AppBar position="static" color="primary">
-      <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: ["column-reverse", "column-reverse", "row"],
+          justifyContent: "space-between",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            margin: "1rem 2rem 1rem 0rem",
+          }}
         >
-          <Menu />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          NoteFlow
-        </Typography>
-        <Button color="inherit">Login</Button>
-      </Toolbar>
-    </AppBar>
+          <Box>
+            <Typography variant="h3">Time to revise.</Typography>
+            <Typography variant="h4" color="text.secondary">
+              Find my latest notes here.
+            </Typography>
+          </Box>
+        </Box>
+        <NoteImage
+          unsplashPath="1aczhAYtUA0"
+          boxProps={{
+            width: ["100%", "100%", "50%"],
+            height: ["23rem", "25rem", "35rem"],
+          }}
+          imageProps={{
+            priority: false,
+            sizes: "(max-width: 600px) 50vw, (max-width: 900px) 50vw, 50vw",
+          }}
+        />
+      </Box>
+      <NoteCardGrid />
+    </>
   );
 }
