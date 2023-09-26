@@ -1,22 +1,29 @@
 import { OpenInNew } from "@mui/icons-material";
-import { Box, Grid, Link, List, ListItem, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
+import { List, ListItem } from "./List";
 
 const Footer = () => {
   return (
-    <Grid
-      container
+    <Box
       sx={{
-        justifyContent: "space-evenly",
+        display: "flex",
+        flexDirection: ["column", "row"],
         borderTop: "2px solid grey",
-        padding: "2rem",
+        paddingX: ["1.5rem", "2rem", "4rem"],
+        paddingY: ["2rem", "2rem", "3rem"],
       }}
     >
-      <Grid
+      <Box
         sx={{
           display: "flex",
+          width: ["100%", "70%"],
           flexDirection: "column",
           justifyContent: "space-between",
+          marginBottom: "2rem",
         }}
       >
         <Box>
@@ -28,60 +35,61 @@ const Footer = () => {
         <Typography>
           All rights reserved © Gregory Frost {new Date().getFullYear()}
         </Typography>
-      </Grid>
+      </Box>
       <Grid
+        container
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           justifyContent: "space-between",
+          width: ["100%", "40%"],
         }}
       >
-        <Box>
+        <Grid item xs={4} sm={6}>
           <Typography variant="h6">Contact</Typography>
-          <List>
+          <Link
+            component={NextLink}
+            href="mailto:frost.computing21@gmail.com"
+            sx={{ marginLeft: "1rem" }}
+          >
+            Email me
+          </Link>
+        </Grid>
+        <Grid item xs={4} sm={6}>
+          <Typography variant="h6">Sitemap</Typography>
+          <List boxProps={{ margin: "0rem 1rem", padding: "0rem" }}>
             <ListItem>
-              <Link
-                component={NextLink}
-                href="mailto:frost.computing21@gmail.com"
-              >
-                Email me
+              <Link component={NextLink} href="/">
+                Home
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link component={NextLink} href="/about">
+                About
               </Link>
             </ListItem>
           </List>
-        </Box>
-        <Box>
-          <Typography variant="h6">Other Sites</Typography>
-          <List>
-            <ListItem>
-              <Link
-                component={NextLink}
-                href="https://greg-frost-portfolio.vercel.app/"
-                target="_blank"
-                style={{ display: "flex", alignItems: "center" }}
-              >
-                Portfolio{" "}
-                {<OpenInNew fontSize="small" sx={{ paddingLeft: "0.3rem" }} />}
-              </Link>
-            </ListItem>
-          </List>
-        </Box>
+        </Grid>
+        <Grid item xs={4} sm={6}>
+          <Typography variant="h6" sx={{ textWrap: "nowrap" }}>
+            Other Sites
+          </Typography>
+          <Link
+            component={NextLink}
+            href="https://greg-frost-portfolio.vercel.app/"
+            target="_blank"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginLeft: "1rem",
+            }}
+          >
+            Portfolio{" "}
+            {<OpenInNew fontSize="small" sx={{ paddingLeft: "0.3rem" }} />}
+          </Link>
+        </Grid>
       </Grid>
-      <Grid>
-        <Typography variant="h6">Sitemap</Typography>
-        <List>
-          <ListItem>
-            <Link component={NextLink} href="/">
-              Home
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link component={NextLink} href="/about">
-              About
-            </Link>
-          </ListItem>
-        </List>
-      </Grid>
-    </Grid>
+    </Box>
   );
 };
 

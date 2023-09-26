@@ -3,16 +3,7 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import NextLink from "next/link";
 import { OpenInNew } from "@mui/icons-material";
-import { ReactNode } from "react";
-
-type children = { children: ReactNode };
-
-const List = ({ children }: children) => <Box component="ul">{children}</Box>;
-const ListItem = ({ children }: children) => (
-  <Box component="li" sx={{ display: "block" }}>
-    {children}
-  </Box>
-);
+import { List, ListItem } from "@/app/components/List";
 
 const AboutPage = () => (
   <>
@@ -38,7 +29,7 @@ const AboutPage = () => (
       Why Noteflow exists
     </Typography>
 
-    <List>
+    <List boxProps={{ margin: "1rem 2rem", padding: "0rem" }}>
       <ListItem>
         <Typography variant="h6" color="text.secondary">
           Simplified Notekeeping:
@@ -73,7 +64,7 @@ const AboutPage = () => (
       Plugs <OpenInNew fontSize="small" />
     </Typography>
 
-    <List>
+    <List boxProps={{ margin: "1rem 2rem", padding: "0rem" }}>
       <ListItem>
         <Link
           component={NextLink}
