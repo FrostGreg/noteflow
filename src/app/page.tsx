@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import BlogImage from "./components/BlogImage";
-import ArticleGrid from "./components/ArticleGrid";
+import ArticleGrid from "./components/ArticleGrid/ArticleGrid";
 
 export default function Home() {
   return (
@@ -11,7 +11,6 @@ export default function Home() {
           display: "flex",
           flexDirection: ["column-reverse", "column-reverse", "row"],
           justifyContent: "space-between",
-          // marginBottom: "10rem",
         }}
       >
         <Box

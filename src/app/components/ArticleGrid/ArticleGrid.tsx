@@ -1,10 +1,11 @@
 "use client";
 import { getPostData, getPostIDs } from "@/utils/orch";
-import ArticleCard from "./ArticleCard";
-import SearchBar from "./SearchBar";
+import ArticleCard from "../ArticleCard";
+import SearchBar from "../SearchBar";
 import Box from "@mui/material/Box";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PostData } from "@/utils/types";
+import GridSkeleton from "./GridSkeleton";
 
 const ArticleGrid = () => {
   const [search, setSearch] = useState<string | undefined>();
@@ -50,11 +51,13 @@ const ArticleGrid = () => {
         gap={1}
         ref={gridRef}
       >
-        <Suspense fallback={<>Loading...</>}>
-          {postData.map((data, index) => {
+        {postData.length === 0 ? (
+          <GridSkeleton />
+        ) : (
+          postData.map((data, index) => {
             return <ArticleCard id={postIDs[index]} data={data} key={index} />;
-          })}
-        </Suspense>
+          })
+        )}
       </Box>
     </>
   );
