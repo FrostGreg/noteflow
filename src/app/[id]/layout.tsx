@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import BackLink from "../../components/BackLink";
+import BackLink from "../components/BackLink";
 
 const NoteLayout = ({ children }: { children: React.ReactNode }) => (
   <Grid container sx={{ flexGrow: 1, marginTop: "6rem" }}>
