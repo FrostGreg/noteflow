@@ -29,11 +29,7 @@ const ArticleGrid = () => {
 
       await res.map(async (id: string) => {
         const { data } = await getPostData(id);
-        setPostData((prev) => {
-          const newArr = Array.from(prev || []);
-          newArr.push({ id, ...data });
-          return newArr;
-        });
+        setPostData((prev) => Array.from(prev || []).concat({ id, ...data }));
       });
     };
 
