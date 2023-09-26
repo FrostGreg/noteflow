@@ -74,7 +74,7 @@ const NoteCardGrid = () => {
             color="text.secondary"
             sx={{ marginTop: "2rem", marginBottom: "11rem" }}
           >
-            Couldn&apos;t find any notes on that topic. Sorry.
+            Couldn&apos;t find any notes. Sorry.
           </Typography>
         </Box>
       ) : (
