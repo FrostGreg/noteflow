@@ -14,7 +14,7 @@ const BackLink = () => (
         marginRight: "1.5rem",
       }}
     />
-    <Typography>Back to Articles</Typography>
+    <Typography>Back to Notes</Typography>
   </Link>
 );
 

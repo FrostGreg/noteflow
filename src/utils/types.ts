@@ -1,4 +1,4 @@
-export type PostData = {
+export type NoteData = {
   title: string;
   author: string;
   date: string;

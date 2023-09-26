@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
-const ArticleCard = ({ id, data }: { id: string; data: any }) => {
+const NoteCard = ({ id, data }: { id: string; data: any }) => {
   return (
     <Box
       sx={{
@@ -71,4 +71,4 @@ const ArticleCard = ({ id, data }: { id: string; data: any }) => {
   );
 };
 
-export default ArticleCard;
+export default NoteCard;

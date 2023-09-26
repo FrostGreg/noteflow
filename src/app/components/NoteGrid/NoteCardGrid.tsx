@@ -1,35 +1,35 @@
 "use client";
-import { getPostData, getPostIDs } from "@/utils/orch";
-import ArticleCard from "../ArticleCard";
+import { getNoteData, getNoteIDs } from "@/utils/orch";
+import NoteCard from "../NoteCard";
 import SearchBar from "../SearchBar";
 import Box from "@mui/material/Box";
 import { useEffect, useRef, useState } from "react";
-import { PostData } from "@/utils/types";
+import { NoteData } from "@/utils/types";
 import GridSkeleton from "./GridSkeleton";
-import BlogImage from "../BlogImage";
+import NoteImage from "../NoteImage";
 import { Typography } from "@mui/material";
 
-type PostDataWithID = PostData & { id: string };
+type NoteDataWithID = NoteData & { id: string };
 
-const ArticleGrid = () => {
+const NoteCardGrid = () => {
   const [search, setSearch] = useState<string | undefined>();
-  const [postData, setPostData] = useState<PostDataWithID[]>();
+  const [noteData, setNoteData] = useState<NoteDataWithID[]>();
   const gridRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    setPostData(undefined);
+    setNoteData(undefined);
 
     const fetchData = async () => {
-      const res = await getPostIDs(search);
+      const res = await getNoteIDs(search);
 
       if (res.length === 0) {
-        setPostData([]);
+        setNoteData([]);
         return;
       }
 
       await res.map(async (id: string) => {
-        const { data } = await getPostData(id);
-        setPostData((prev) => Array.from(prev || []).concat({ id, ...data }));
+        const { data } = await getNoteData(id);
+        setNoteData((prev) => Array.from(prev || []).concat({ id, ...data }));
       });
     };
 
@@ -40,7 +40,7 @@ const ArticleGrid = () => {
     <>
       <SearchBar
         setSearch={setSearch}
-        resultCount={postData?.length}
+        resultCount={noteData?.length}
         scrollRef={gridRef}
         boxProps={{
           marginTop: ["5rem", "5rem", "-5rem"],
@@ -48,7 +48,7 @@ const ArticleGrid = () => {
           width: ["100%", "100%", "45%"],
         }}
       />
-      {postData && postData.length === 0 ? (
+      {noteData && noteData.length === 0 ? (
         <Box
           sx={{
             display: "flex",
@@ -60,7 +60,7 @@ const ArticleGrid = () => {
           }}
           ref={gridRef}
         >
-          <BlogImage
+          <NoteImage
             unsplashPath="ZnLprInKM7s"
             boxProps={{ height: "40rem" }}
             imageProps={{
@@ -84,10 +84,10 @@ const ArticleGrid = () => {
           gap={1}
           ref={gridRef}
         >
-          {postData === undefined && <GridSkeleton />}
-          {postData &&
-            postData.map(({ id, ...data }, index) => {
-              return <ArticleCard id={id} data={data} key={index} />;
+          {noteData === undefined && <GridSkeleton />}
+          {noteData &&
+            noteData.map(({ id, ...data }, index) => {
+              return <NoteCard id={id} data={data} key={index} />;
             })}
         </Box>
       )}
@@ -95,4 +95,4 @@ const ArticleGrid = () => {
   );
 };
 
-export default ArticleGrid;
+export default NoteCardGrid;

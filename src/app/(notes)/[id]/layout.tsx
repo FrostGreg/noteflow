@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import React from "react";
 import BackLink from "../../components/BackLink";
 
-const BlogLayout = ({ children }: { children: React.ReactNode }) => (
+const NoteLayout = ({ children }: { children: React.ReactNode }) => (
   <Grid container sx={{ flexGrow: 1, marginTop: "6rem" }}>
     <Grid item md></Grid>
     <Grid item xs={12} sm={12} md={8}>
@@ -13,4 +13,4 @@ const BlogLayout = ({ children }: { children: React.ReactNode }) => (
   </Grid>
 );
 
-export default BlogLayout;
+export default NoteLayout;

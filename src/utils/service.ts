@@ -1,39 +1,39 @@
 import { readFileSync, readdirSync } from "fs";
 import matter from "gray-matter";
 import path from "path";
-import postTopicsMap from "./postTopicsMap.json" assert { type: "json" };
-import { PostData } from "./types";
+import noteTopicsMap from "./noteTopicsMap.json" assert { type: "json" };
+import { NoteData } from "./types";
 
-export function getPostsDir() {
-  return `${process.cwd()}/public/posts`;
+export function getNotesDir() {
+  return `${process.cwd()}/public/notes`;
 }
 
 /*
-  Posts will be added through git PR's and redeploying the server therefore
+  Notes will be added through git PR's and redeploying the server therefore
   no requirement for live updating so this caching is fine.
 */
-let allPostIDs: string[] | undefined = undefined;
+let allNotesIDs: string[] | undefined = undefined;
 
-export function readPostIds(tag?: string) {
+export function readNotesIds(tag?: string) {
   if (tag !== undefined) {
-    return postTopicsMap[tag as keyof typeof postTopicsMap] || [];
+    return noteTopicsMap[tag as keyof typeof noteTopicsMap] || [];
   }
 
-  if (allPostIDs === undefined) {
-    const fileNames = readdirSync(getPostsDir());
-    allPostIDs = fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
+  if (allNotesIDs === undefined) {
+    const fileNames = readdirSync(getNotesDir());
+    allNotesIDs = fileNames.map((fileName) => fileName.replace(/\.mdx$/, ""));
   }
-  return allPostIDs;
+  return allNotesIDs;
 }
 
-const postDataCache = new Map();
+const noteDataCache = new Map();
 
-export function readPostData(id: string) {
-  if (postDataCache.has(id)) {
-    return postDataCache.get(id);
+export function readNoteData(id: string) {
+  if (noteDataCache.has(id)) {
+    return noteDataCache.get(id);
   }
 
-  const fullPath = path.join(getPostsDir(), `${id}.mdx`);
+  const fullPath = path.join(getNotesDir(), `${id}.mdx`);
 
   let fileContents;
 
@@ -52,10 +52,10 @@ export function readPostData(id: string) {
       ...matterResult.data,
       // remove duplicates from chips
       chips: Array.from(new Set(matterResult.data.chips)),
-    } as PostData,
+    } as NoteData,
   };
 
-  postDataCache.set(id, response);
+  noteDataCache.set(id, response);
 
   return response;
 }

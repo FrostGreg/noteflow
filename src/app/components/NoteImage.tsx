@@ -3,7 +3,7 @@ import { SxProps } from "@mui/material/styles";
 import Image from "next/image";
 import { ImageProps } from "next/image";
 
-const BlogImage = ({
+const NoteImage = ({
   unsplashPath,
   boxProps,
   imageProps,
@@ -37,4 +37,4 @@ const BlogImage = ({
   </Box>
 );
 
-export default BlogImage;
+export default NoteImage;

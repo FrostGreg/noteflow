@@ -2,7 +2,7 @@ import BackLink from "./components/BackLink";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import BlogImage from "./components/BlogImage";
+import NoteImage from "./components/NoteImage";
 
 const NotFound = () => (
   <>
@@ -19,7 +19,7 @@ const NotFound = () => (
             you&apos;re looking for.
           </Typography>
         </Box>
-        <BlogImage unsplashPath="sxiSod0tyYQ" />
+        <NoteImage unsplashPath="sxiSod0tyYQ" />
       </Grid>
       <Grid item md></Grid>
     </Grid>

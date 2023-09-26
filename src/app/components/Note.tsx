@@ -1,18 +1,18 @@
 import dynamic from "next/dynamic";
 
-import BlogImage from "./BlogImage";
+import NoteImage from "./NoteImage";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";
-import { PostData } from "@/utils/types";
+import { NoteData } from "@/utils/types";
 const AudioPlayback = dynamic(() => import("./AudioPlayback"));
 
-const Article = ({
+const Note = ({
   data,
   content,
   children,
 }: {
-  data: PostData;
+  data: NoteData;
   content: string;
   children: ReactNode;
 }) => {
@@ -26,7 +26,7 @@ const Article = ({
           {data.date} &mdash; {data.length} read
         </Typography>
       </Box>
-      <BlogImage unsplashPath={data.imagePath} />
+      <NoteImage unsplashPath={data.imagePath} />
       <Box
         sx={{
           display: "flex",
@@ -55,4 +55,4 @@ const Article = ({
   );
 };
 
-export default Article;
+export default Note;

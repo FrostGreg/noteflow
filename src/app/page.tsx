@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import BlogImage from "./components/BlogImage";
-import ArticleGrid from "./components/ArticleGrid/ArticleGrid";
+import NoteImage from "./components/NoteImage";
+import NoteCardGrid from "./components/NoteGrid/NoteCardGrid";
 
 export default function Home() {
   return (
@@ -28,7 +28,7 @@ export default function Home() {
             </Typography>
           </Box>
         </Box>
-        <BlogImage
+        <NoteImage
           unsplashPath="1aczhAYtUA0"
           boxProps={{
             width: ["100%", "100%", "50%"],
@@ -40,7 +40,7 @@ export default function Home() {
           }}
         />
       </Box>
-      <ArticleGrid />
+      <NoteCardGrid />
     </>
   );
 }
