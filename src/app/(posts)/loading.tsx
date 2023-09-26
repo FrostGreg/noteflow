@@ -1,7 +1,5 @@
-import dynamic from "next/dynamic";
-
-const Box = dynamic(() => import("@mui/material/Box"));
-const Skeleton = dynamic(() => import("@mui/material/Skeleton"));
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 
 const Loading = () => (
   <Box>
