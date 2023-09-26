@@ -1,8 +1,18 @@
-import { Box, Link, List, ListItem } from "@mui/material";
-import NextLink from "next/link";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import NextLink from "next/link";
 import { OpenInNew } from "@mui/icons-material";
-import NoteImage from "@/app/components/NoteImage";
+import { ReactNode } from "react";
+
+type children = { children: ReactNode };
+
+const List = ({ children }: children) => <Box component="ul">{children}</Box>;
+const ListItem = ({ children }: children) => (
+  <Box component="li" sx={{ display: "block" }}>
+    {children}
+  </Box>
+);
 
 const AboutPage = () => (
   <>
@@ -27,8 +37,9 @@ const AboutPage = () => (
     <Typography variant="h4" sx={{ marginTop: "3rem" }}>
       Why Noteflow exists
     </Typography>
+
     <List>
-      <ListItem sx={{ flexWrap: "wrap" }}>
+      <ListItem>
         <Typography variant="h6" color="text.secondary">
           Simplified Notekeeping:
         </Typography>
@@ -37,7 +48,7 @@ const AboutPage = () => (
           without logins, and open for anyone to read.
         </Typography>
       </ListItem>
-      <ListItem sx={{ flexWrap: "wrap" }}>
+      <ListItem>
         <Typography variant="h6" color="text.secondary">
           Free Cloud Storage:
         </Typography>
@@ -46,7 +57,7 @@ const AboutPage = () => (
           longer cluttered with notes saving space for more meaningful things.
         </Typography>
       </ListItem>
-      <ListItem sx={{ flexWrap: "wrap" }}>
+      <ListItem>
         <Typography variant="h6" color="text.secondary">
           Learning opportunity:
         </Typography>
