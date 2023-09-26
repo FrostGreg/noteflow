@@ -2,8 +2,9 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Note from "@/app/components/Note";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-import { getNoteData } from "@/utils/orch";
-import { readNotesIds } from "@/utils/service";
+
+// Can use service since it's a server component
+import { readNoteData, readNotesIds } from "@/utils/service";
 
 const MarkdownImage = dynamic(() => import("@/app/components/MarkdownImage"));
 const components = { MarkdownImage };
@@ -11,16 +12,15 @@ const components = { MarkdownImage };
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  // uses service not fetch since it's run on the server
   const noteIDs = readNotesIds();
-  return noteIDs.map((id) => {
-    id;
-  });
+  const temp = noteIDs.map((id) => ({
+    id,
+  }));
+  return temp;
 }
 
 const Page = async ({ params }: { params: { id: string } }) => {
-  //
-  const { data, content } = await getNoteData(params.id);
+  const { data, content } = readNoteData(params.id);
   return (
     <Note data={data} content={content}>
       <Suspense fallback={<>Loading..</>}>
