@@ -1,3 +1,4 @@
+import { OpenInNew } from "@mui/icons-material";
 import { Box, Grid, Link, List, ListItem, Typography } from "@mui/material";
 import NextLink from "next/link";
 
@@ -25,7 +26,7 @@ const Footer = () => {
           </Typography>
         </Box>
         <Typography>
-          All rights reserved © Greg Frost {new Date().getFullYear()}
+          All rights reserved © Gregory Frost {new Date().getFullYear()}
         </Typography>
       </Grid>
       <Grid
@@ -39,28 +40,27 @@ const Footer = () => {
           <Typography variant="h6">Contact</Typography>
           <List>
             <ListItem>
-              <Link component={NextLink} href="/">
-                Email us
+              <Link
+                component={NextLink}
+                href="mailto:frost.computing21@gmail.com"
+              >
+                Email me
               </Link>
             </ListItem>
           </List>
         </Box>
         <Box>
-          <Typography variant="h6">General</Typography>
+          <Typography variant="h6">Other Sites</Typography>
           <List>
             <ListItem>
-              <Link component={NextLink} href="/">
-                Privacy Policy
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link component={NextLink} href="/">
-                Code of Conduct
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link component={NextLink} href="/">
-                Terms of Use
+              <Link
+                component={NextLink}
+                href="https://greg-frost-portfolio.vercel.app/"
+                target="_blank"
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                Portfolio{" "}
+                {<OpenInNew fontSize="small" sx={{ paddingLeft: "0.3rem" }} />}
               </Link>
             </ListItem>
           </List>
@@ -75,13 +75,8 @@ const Footer = () => {
             </Link>
           </ListItem>
           <ListItem>
-            <Link component={NextLink} href="/">
-              Pages
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link component={NextLink} href="/">
-              Login
+            <Link component={NextLink} href="/about">
+              About
             </Link>
           </ListItem>
         </List>
