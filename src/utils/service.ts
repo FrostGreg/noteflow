@@ -5,7 +5,7 @@ import noteTopicsMap from "./noteTopicsMap.json" assert { type: "json" };
 import { NoteData } from "./types";
 
 export function getNotesDir() {
-  return `${process.cwd()}/public/notes`;
+  return `${process.cwd()}/notes`;
 }
 
 /*

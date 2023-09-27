@@ -1,5 +1,6 @@
 "use client";
 import { getNoteData, getNoteIDs } from "@/utils/orch";
+import useSWR from "swr";
 import NoteCard from "../NoteCard";
 import SearchBar from "../SearchBar";
 import Box from "@mui/material/Box";
@@ -9,38 +10,48 @@ import GridSkeleton from "./GridSkeleton";
 import NoteImage from "../NoteImage";
 import { Typography } from "@mui/material";
 
-type NoteDataWithID = NoteData & { id: string };
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+type NoteDataWithID = { id: string; data: NoteData };
 
 const NoteCardGrid = () => {
   const [search, setSearch] = useState<string | undefined>();
-  const [noteData, setNoteData] = useState<NoteDataWithID[]>();
+  // const [noteData, setNoteData] = useState<NoteDataWithID[]>();
   const gridRef = useRef<null | HTMLDivElement>(null);
 
-  useEffect(() => {
-    setNoteData(undefined);
+  // const { data: noteIDs } = useSWR("/api/note-ids", fetcher);
 
-    const fetchData = async () => {
-      const res = await getNoteIDs(search);
+  const { data: noteData } = useSWR<NoteDataWithID>(
+    `/api/note-data?id=${search}`,
+    fetcher
+  );
 
-      if (res.length === 0) {
-        setNoteData([]);
-        return;
-      }
+  // useEffect(() => {
+  //   setNoteData(undefined);
 
-      await res.map(async (id: string) => {
-        const { data } = await getNoteData(id);
-        setNoteData((prev) => Array.from(prev || []).concat({ id, ...data }));
-      });
-    };
+  //   const fetchData = async () => {
+  //     const res = await getNoteIDs(search);
 
-    fetchData();
-  }, [search]);
+  //     if (res.length === 0) {
+  //       setNoteData([]);
+  //       return;
+  //     }
+
+  //     await res.map(async (id: string) => {
+  //       const { data } = await getNoteData(id);
+  //       setNoteData((prev) => Array.from(prev || []).concat({ id, ...data }));
+  //     });
+  //   };
+
+  //   fetchData();
+  // }, [search]);
 
   return (
     <>
       <SearchBar
         setSearch={setSearch}
-        resultCount={noteData?.length}
+        // resultCount={noteData?.length}
+        resultCount={1}
         scrollRef={gridRef}
         boxProps={{
           marginTop: ["5rem", "5rem", "-5rem"],
@@ -48,7 +59,7 @@ const NoteCardGrid = () => {
           width: ["100%", "100%", "45%"],
         }}
       />
-      {noteData && noteData.length === 0 ? (
+      {noteData && Object.keys(noteData).length === 0 ? (
         <Box
           sx={{
             display: "flex",
@@ -85,10 +96,11 @@ const NoteCardGrid = () => {
           ref={gridRef}
         >
           {noteData === undefined && <GridSkeleton />}
-          {noteData &&
+          {/* {noteData &&
             noteData.map(({ id, ...data }, index) => {
               return <NoteCard id={id} data={data} key={index} />;
-            })}
+            })} */}
+          {noteData && <NoteCard id={noteData.id} data={noteData.data} />}
         </Box>
       )}
     </>
