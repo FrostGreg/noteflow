@@ -62,9 +62,7 @@ const NoteCard = ({ id, data }: { id: string; data: any }) => {
           <Typography variant="h4" color="text.primary">
             {data.title}
           </Typography>
-          <Typography color="text.secondary">
-            {data.chips.join(", ")}
-          </Typography>
+          <Typography color="text.secondary">{data.chips}</Typography>
         </Box>
       </Link>
     </Box>

@@ -1,6 +1,4 @@
 "use client";
-import { getNoteData, getNoteIDs } from "@/utils/orch";
-import useSWR from "swr";
 import NoteCard from "../NoteCard";
 import SearchBar from "../SearchBar";
 import Box from "@mui/material/Box";
@@ -9,6 +7,7 @@ import { NoteData } from "@/utils/types";
 import GridSkeleton from "./GridSkeleton";
 import NoteImage from "../NoteImage";
 import { Typography } from "@mui/material";
+import { getNoteData } from "@/utils/orch";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -16,35 +15,34 @@ type NoteDataWithID = { id: string; data: NoteData };
 
 const NoteCardGrid = () => {
   const [search, setSearch] = useState<string | undefined>();
-  // const [noteData, setNoteData] = useState<NoteDataWithID[]>();
+  const [noteData, setNoteData] = useState<NoteDataWithID[]>();
   const gridRef = useRef<null | HTMLDivElement>(null);
 
-  // const { data: noteIDs } = useSWR("/api/note-ids", fetcher);
+  useEffect(() => {
+    setNoteData(undefined);
 
-  const { data: noteData } = useSWR<NoteDataWithID>(
-    `/api/note-data?id=${search}`,
-    fetcher
-  );
+    const fetchData = async () => {
+      // const res = await getNoteIDs(search);
 
-  // useEffect(() => {
-  //   setNoteData(undefined);
+      // if (res.length === 0) {
+      //   setNoteData([]);
+      //   return;
+      // }
 
-  //   const fetchData = async () => {
-  //     const res = await getNoteIDs(search);
+      // await res.map(async (id: string) => {
+      //   const { data } = await getNoteData(id);
+      //   setNoteData((prev) => Array.from(prev || []).concat({ id, ...data }));
+      // });
+      const data = await getNoteData();
+      setNoteData([data]);
+    };
 
-  //     if (res.length === 0) {
-  //       setNoteData([]);
-  //       return;
-  //     }
+    fetchData();
+  }, [search]);
 
-  //     await res.map(async (id: string) => {
-  //       const { data } = await getNoteData(id);
-  //       setNoteData((prev) => Array.from(prev || []).concat({ id, ...data }));
-  //     });
-  //   };
-
-  //   fetchData();
-  // }, [search]);
+  useEffect(() => {
+    console.log(noteData);
+  }, [noteData]);
 
   return (
     <>
@@ -100,7 +98,9 @@ const NoteCardGrid = () => {
             noteData.map(({ id, ...data }, index) => {
               return <NoteCard id={id} data={data} key={index} />;
             })} */}
-          {noteData && <NoteCard id={noteData.id} data={noteData.data} />}
+          {noteData && (
+            <NoteCard id="embracing-change" data={{ ...noteData[0] }} />
+          )}
         </Box>
       )}
     </>
