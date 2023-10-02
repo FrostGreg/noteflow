@@ -37,7 +37,7 @@ const Note = ({
         }}
       >
         <AudioPlayback content={content} />
-        {data.chips.map((chip, index) => (
+        {data.chips.split(",").map((chip, index) => (
           <Box
             key={index}
             sx={{
