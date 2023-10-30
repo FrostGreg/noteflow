@@ -1,8 +1,9 @@
 export type NoteData = {
+  id: string;
+  date: Date;
+  name: string;
   title: string;
-  author: string;
-  date: string;
   length: string;
   imagePath: string;
-  chips: string[];
+  chips: string;
 };

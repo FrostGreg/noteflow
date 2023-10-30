@@ -4,8 +4,9 @@ import Image from "next/image";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import { NoteData } from "@/utils/types";
 
-const NoteCard = ({ id, data }: { id: string; data: any }) => {
+const NoteCard = ({ note }: { note: NoteData }) => {
   return (
     <Box
       sx={{
@@ -34,7 +35,7 @@ const NoteCard = ({ id, data }: { id: string; data: any }) => {
         },
       }}
     >
-      <Link href={`${id}`} component={NextLink} underline="none">
+      <Link href={`${note.name}`} component={NextLink} underline="none">
         <Box
           sx={{
             position: "relative",
@@ -43,7 +44,7 @@ const NoteCard = ({ id, data }: { id: string; data: any }) => {
           }}
         >
           <Image
-            src={`https://source.unsplash.com/${data.imagePath}`}
+            src={`https://source.unsplash.com/${note.imagePath}`}
             alt="random image"
             fill
             sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
@@ -57,14 +58,13 @@ const NoteCard = ({ id, data }: { id: string; data: any }) => {
         </Box>
         <Box sx={{ marginTop: "1rem" }}>
           <Typography variant="h6" color="text.secondary">
-            {data.date} &mdash; {data.length} read
+            {new Date(note.date.toString()).toDateString()} &mdash;{" "}
+            {note.length} read
           </Typography>
           <Typography variant="h4" color="text.primary">
-            {data.title}
+            {note.title}
           </Typography>
-          <Typography color="text.secondary">
-            {data.chips.join(", ")}
-          </Typography>
+          <Typography color="text.secondary">{note.chips}</Typography>
         </Box>
       </Link>
     </Box>

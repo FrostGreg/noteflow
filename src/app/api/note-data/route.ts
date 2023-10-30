@@ -1,11 +1,19 @@
-import { readNoteData } from "@/utils/service";
 import { NextResponse } from "next/server";
+import prisma from "../../../../lib/prisma";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
 
-  const noteIDs = readNoteData(id || "");
+  if (id === null) {
+    return NextResponse.json({});
+  }
 
-  return NextResponse.json(noteIDs);
+  const noteData = await prisma.note.findFirst({
+    where: {
+      name: id,
+    },
+  });
+
+  return NextResponse.json(noteData);
 }

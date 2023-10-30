@@ -27,7 +27,7 @@ const Footer = () => {
         }}
       >
         <Box>
-          <Typography variant="h5">NoteFlow</Typography>
+          <Typography variant="h5">NoteFlows</Typography>
           <Typography variant="h5" fontSize={16}>
             Capture-Create-Connect
           </Typography>

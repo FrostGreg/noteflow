@@ -1,5 +1,4 @@
 "use client";
-import { getNoteData, getNoteIDs } from "@/utils/orch";
 import NoteCard from "../NoteCard";
 import SearchBar from "../SearchBar";
 import Box from "@mui/material/Box";
@@ -8,29 +7,19 @@ import { NoteData } from "@/utils/types";
 import GridSkeleton from "./GridSkeleton";
 import NoteImage from "../NoteImage";
 import { Typography } from "@mui/material";
-
-type NoteDataWithID = NoteData & { id: string };
+import { getNoteMeta } from "@/utils/orch";
 
 const NoteCardGrid = () => {
   const [search, setSearch] = useState<string | undefined>();
-  const [noteData, setNoteData] = useState<NoteDataWithID[]>();
+  const [noteData, setNoteData] = useState<NoteData[]>();
   const gridRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
     setNoteData(undefined);
 
     const fetchData = async () => {
-      const res = await getNoteIDs(search);
-
-      if (res.length === 0) {
-        setNoteData([]);
-        return;
-      }
-
-      await res.map(async (id: string) => {
-        const { data } = await getNoteData(id);
-        setNoteData((prev) => Array.from(prev || []).concat({ id, ...data }));
-      });
+      const data = await getNoteMeta(search || "");
+      setNoteData(data);
     };
 
     fetchData();
@@ -48,7 +37,7 @@ const NoteCardGrid = () => {
           width: ["100%", "100%", "45%"],
         }}
       />
-      {noteData && noteData.length === 0 ? (
+      {noteData && Object.keys(noteData).length === 0 ? (
         <Box
           sx={{
             display: "flex",
@@ -86,8 +75,8 @@ const NoteCardGrid = () => {
         >
           {noteData === undefined && <GridSkeleton />}
           {noteData &&
-            noteData.map(({ id, ...data }, index) => {
-              return <NoteCard id={id} data={data} key={index} />;
+            noteData.map((note, index) => {
+              return <NoteCard note={note} key={index} />;
             })}
         </Box>
       )}

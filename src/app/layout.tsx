@@ -5,9 +5,9 @@ import { Box } from "@mui/material";
 import ThemeRegistry from "./components/ThemeRegistry/ThemeRegistry";
 
 export const metadata: Metadata = {
-  title: "NoteFlow - Capture, Create, Connect",
+  title: "NoteFlows - Capture, Create, Connect",
   description:
-    "Elevate your productivity with NoteFlow - the ultimate note-taking app for capturing ideas, organizing thoughts, and syncing seamlessly across devices. Create, organize, and connect your notes effortlessly. Perfect for students, professionals, and creative thinkers.",
+    "Elevate your productivity with NoteFlows - the ultimate note-taking app for capturing ideas, organizing thoughts, and syncing seamlessly across devices. Create, organize, and connect your notes effortlessly. Perfect for students, professionals, and creative thinkers.",
   viewport: "initial-scale=1, width=device-width",
 };
 
