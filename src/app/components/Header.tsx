@@ -23,7 +23,7 @@ const Header = () => (
       }}
     >
       <Typography variant="h5" fontSize={20} sx={{ flexGrow: 1 }}>
-        NoteFlow
+        NoteFlows
       </Typography>
       <Typography variant="h5" fontSize={16}>
         Capture-Create-Connect

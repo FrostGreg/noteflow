@@ -8,14 +8,14 @@ import { List, ListItem } from "@/app/components/List";
 const AboutPage = () => (
   <>
     <Box sx={{ marginY: "4rem" }}>
-      <Typography variant="h2">About Noteflow</Typography>
+      <Typography variant="h2">About Noteflows</Typography>
       <Typography variant="h6" color="text.secondary">
         26th September, 2023
       </Typography>
     </Box>
 
     <Typography>
-      This is Noteflow, a place where I can document my university notes or
+      This is Noteflows, a place where I can document my university notes or
       anything else I want to track without having to sign in and can be
       accessed anywhere with an internet connection. Over the last year I have
       read quite a lot of the blogs over at{" "}
@@ -35,8 +35,8 @@ const AboutPage = () => (
           Simplified Notekeeping:
         </Typography>
         <Typography>
-          Noteflow is the place where I can keep all my notes neatly organized ,
-          without logins, and open for anyone to read.
+          Noteflows is the place where I can keep all my notes neatly organized
+          , without logins, and open for anyone to read.
         </Typography>
       </ListItem>
       <ListItem>
@@ -53,8 +53,8 @@ const AboutPage = () => (
           Learning opportunity:
         </Typography>
         <Typography>
-          Noteflow is the first full stack web app I have built from scratch and
-          it has taught me to use some pretty cool features like static site
+          Noteflows is the first full stack web app I have built from scratch
+          and it has taught me to use some pretty cool features like static site
           generation, react lazy loading, and server side rendering
         </Typography>
       </ListItem>
