@@ -7,49 +7,29 @@ import { NoteData } from "@/utils/types";
 import GridSkeleton from "./GridSkeleton";
 import NoteImage from "../NoteImage";
 import { Typography } from "@mui/material";
-import { getNoteData } from "@/utils/orch";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-type NoteDataWithID = { id: string; data: NoteData };
+import { getNoteMeta } from "@/utils/orch";
 
 const NoteCardGrid = () => {
   const [search, setSearch] = useState<string | undefined>();
-  const [noteData, setNoteData] = useState<NoteDataWithID[]>();
+  const [noteData, setNoteData] = useState<NoteData[]>();
   const gridRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
     setNoteData(undefined);
 
     const fetchData = async () => {
-      // const res = await getNoteIDs(search);
-
-      // if (res.length === 0) {
-      //   setNoteData([]);
-      //   return;
-      // }
-
-      // await res.map(async (id: string) => {
-      //   const { data } = await getNoteData(id);
-      //   setNoteData((prev) => Array.from(prev || []).concat({ id, ...data }));
-      // });
-      const data = await getNoteData();
-      setNoteData([data]);
+      const data = await getNoteMeta(search || "");
+      setNoteData(data);
     };
 
     fetchData();
   }, [search]);
 
-  useEffect(() => {
-    console.log(noteData);
-  }, [noteData]);
-
   return (
     <>
       <SearchBar
         setSearch={setSearch}
-        // resultCount={noteData?.length}
-        resultCount={1}
+        resultCount={noteData?.length}
         scrollRef={gridRef}
         boxProps={{
           marginTop: ["5rem", "5rem", "-5rem"],
@@ -94,13 +74,10 @@ const NoteCardGrid = () => {
           ref={gridRef}
         >
           {noteData === undefined && <GridSkeleton />}
-          {/* {noteData &&
-            noteData.map(({ id, ...data }, index) => {
-              return <NoteCard id={id} data={data} key={index} />;
-            })} */}
-          {noteData && (
-            <NoteCard id="embracing-change" data={{ ...noteData[0] }} />
-          )}
+          {noteData &&
+            noteData.map((note, index) => {
+              return <NoteCard note={note} key={index} />;
+            })}
         </Box>
       )}
     </>

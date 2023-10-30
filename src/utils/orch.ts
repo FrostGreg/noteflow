@@ -1,11 +1,9 @@
-export async function getNoteIDs(tag?: string) {
-  const params = tag ? `?tag=${tag}` : "";
-  const res = await fetch(`/api/note-ids${params}`);
+export async function getNoteData(id: string) {
+  const res = await fetch(`/api/note-data?id=${id}`);
   return res.json();
 }
 
-export async function getNoteData() {
-  // const res = await fetch(`/api/note-data?id=${id}`);
-  const res = await fetch(`/api/note-data?id=embracing-change`);
+export async function getNoteMeta(tag: string = "") {
+  const res = await fetch(`/api/note-meta?tag=${tag}`);
   return res.json();
 }

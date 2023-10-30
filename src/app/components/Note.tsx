@@ -23,7 +23,8 @@ const Note = ({
           {data.title}
         </Typography>
         <Typography variant="h6" color="text.secondary">
-          {data.date} &mdash; {data.length} read
+          {new Date(data.date.toString()).toDateString()} &mdash; {data.length}{" "}
+          read
         </Typography>
       </Box>
       <NoteImage unsplashPath={data.imagePath} />
