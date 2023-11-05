@@ -51,7 +51,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
         remarkPlugins: [remarkGfm],
       },
     },
-    components: { components },
+    components: components,
   });
 
   return (
