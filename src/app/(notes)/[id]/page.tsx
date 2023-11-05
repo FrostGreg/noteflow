@@ -1,9 +1,11 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { compileMDX } from "next-mdx-remote/rsc";
 import Note from "@/app/components/Note";
 import MarkdownImage from "@/app/components/MarkdownImage";
 
 // Can use service since it's a server component
 import prisma from "../../../../lib/prisma";
+import rehypePrettyCode from "rehype-pretty-code";
+import remarkGfm from "remark-gfm";
 
 const components = { MarkdownImage };
 
@@ -40,9 +42,21 @@ const Page = async ({ params }: { params: { id: string } }) => {
   // Database returns escaped delimiter so must unescape them
   const formattedContent = content.replaceAll("\\n", "\n");
 
+  const { content: compiledContent } = await compileMDX<{}>({
+    source: formattedContent,
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [rehypePrettyCode],
+        remarkPlugins: [remarkGfm],
+      },
+    },
+    components: { components },
+  });
+
   return (
     <Note data={data} content={content}>
-      <MDXRemote source={formattedContent} components={components} />
+      {compiledContent}
     </Note>
   );
 };
