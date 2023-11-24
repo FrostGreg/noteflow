@@ -5,8 +5,8 @@ import Image, { ImageProps } from "next/image";
 export type MarkdownImageProps = {
   src: string;
   alt: string;
-  boxProps: SxProps;
-  imageProps: ImageProps;
+  boxProps?: SxProps;
+  imageProps?: ImageProps;
 };
 
 const MarkdownImage = ({
