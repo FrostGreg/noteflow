@@ -26,7 +26,8 @@ export async function generateStaticParams() {
 }
 
 // Ignore Invalid prop `children` supplied to `ForwardRef(Box)` error in dev it's built using SSG
-const Page = async ({ params }: { params: { id: string } }) => {
+const Page = async (props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   const noteData = await prisma.note.findFirst({
     where: {
       name: params.id,
